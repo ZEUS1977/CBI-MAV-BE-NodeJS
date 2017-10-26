@@ -2,7 +2,7 @@ var fs = require('fs');
 var XLSX = require('xlsx');
 var TestaBuilder = require("./builders/TestaBuilder.js");
 var Record14Builder = require("./builders/Record14Builder.js");
-
+var insertMovements =  require("./insertMovements.js");
 var wb = XLSX.readFile('input_complex_data.xlsx');
 var data = XLSX.utils.sheet_to_json(wb.Sheets.Foglio1);
 //console.log(data);
@@ -14,6 +14,9 @@ var testaIM;
 var record14;
 var tracciato = "";
 var abiCreditore = "";
+
+insertMovements.insertMany(data);
+
 for(var index in data){
 
   if(!testaCreated){
