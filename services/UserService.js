@@ -4,17 +4,23 @@ var url = "mongodb://localhost:27017/flussi_bancari";
 module.exports = {
 
 
-	insertOne: function (userDatas){
+	insert: function (userDatas){
 		MongoClient.connect(url, userDatas, function(err, db) {
-		  if (err)
-			  throw err;
-
-		  db.collection("users").insertOne(userDatas, function(err, res) {
-		    if (err)
-		    	throw err;
-		    console.log("Number of users inserted: " + res.insertedCount);
-		    db.close();
-		  });
+		  if (err){
+			 console.log("Error conetting to DB!");
+		 }
+			else{
+			  db.collection("users").insertMany(userDatas, function(err, res) {
+			    if (err){
+			    	console.log("Error inserting user datas!");
+						return 0;
+					}else{
+			    	console.log("Number of users inserted: " + res.insertedCount);
+						return res.insertedCount;
+					}
+			    db.close();
+			  });
+			}
 		});
 	}
 

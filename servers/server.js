@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
     console.log(req.body);
     console.log('ok');
     if(!isEmptyObject(req.body))
-      usrService.insertOne(req.body);
+      usrService.insert(req.body);
     else
       console.log('Empty data in request');
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
