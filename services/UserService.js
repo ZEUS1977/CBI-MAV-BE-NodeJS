@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/flussi_bancari";
+var url = "mongodb://test:test@localhost:27017/flussi_bancari";
 
 module.exports = {
 
@@ -10,7 +10,7 @@ module.exports = {
 			 console.log("Error conetting to DB!");
 		 }
 			else{
-			  db.collection("users").insertMany(userDatas, function(err, res) {
+			  db.collection("customers").insert(userDatas, function(err, res) {
 			    if (err){
 			    	console.log("Error inserting user datas!");
 						return 0;
